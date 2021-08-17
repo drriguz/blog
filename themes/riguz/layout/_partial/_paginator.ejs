@@ -1,8 +1,31 @@
 <% if (page.total > 1){ %>
-  <div class="grid-x cell page-nav">
-    <%- paginator({
-      prev_text: "Prev",
-      next_text: "Next"
-    }) %>
-  </div>
+  <nav class="pagination is-small blog-paginator" role="navigation" aria-label="pagination">
+    <% if(page.current > 2) { %>
+      <a class="pagination-previous" href="/page/<%- page.current -1 %>">上一页</a>
+    <% } else if(page.current == 2) {%>
+      <a class="pagination-previous" href="/">上一页</a>
+    <% } %>
+    <% if(page.current < page.total) { %>
+      <a class="pagination-next" href="/page/<%- page.current +1 %>">下一页</a>
+    <% } %>
+
+    <ul class="pagination-list">
+      <li><a class="pagination-link">1</a></li>
+      <% if(page.current - 1 > 1) { %>
+      <li><span class="pagination-ellipsis">&hellip;</span></li>
+      <% if(page.current - 1 > 2) { %>
+      <li><a class="pagination-link"><%- page.current - 1 %></a></li>
+      <% } %>
+      <% } %>
+      <li><a class="pagination-link is-current"><%- page.current %></a></li>
+      <% if(page.current + 1 < page.total) { %>
+      <li><a class="pagination-link"><%- page.current + 1 %></a></li>
+      <% if(page.current + 2 < page.total) { %>
+      <li><span class="pagination-ellipsis">&hellip;</span></li>
+      <% } %>
+      <% } %>
+      <li><a class="pagination-link"><%- page.total %></a></li>
+    </ul>
+  </nav>  
 <% } %>
+

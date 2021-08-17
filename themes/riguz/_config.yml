@@ -1,11 +1,3 @@
-nav:
-  Home: https://riguz.com
-  Archives: /archives
-  Wiki: https://wiki.riguz.com
-  Photo Gags: https://view.riguz.com
-  Projects: https://bug.riguz.com
-  About: /about/
-  Github: https://github.com/soleverlee
 favicon: /images/cat_128.png
 copyright: 2016-2018 Riguz Lee All rights reserved<br/><a href="http://www.miitbeian.gov.cn/" class="blog-link">鄂ICP备15003868号-1</a>
 theme: light

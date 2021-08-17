@@ -8,28 +8,16 @@
     <meta name="description" content="<%= config.description %>"/>
     <meta name="author" content="<%= config.author %>"/>
     <link rel="shortcut icon " type="images/x-icon" href="/assets/yd.png">
-    <link href="https://cdn.bootcss.com/foundation/6.5.1/css/foundation.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/highlight.js/9.13.1/styles/<%= theme.highlight.theme %>.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-    <%- css('common.css') %>
-    <%- css(theme.theme + '.css') %>
-    <script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <%- partial('_partial/_analysis') %>
+    <%- css('bulma.min.css') %>
+    <%- css('theme.css') %>
 </head>
 <body>
-<div class="off-canvas-wrapper no-js">
-    <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
-        <%- partial('_partial/_topbar') %>
-        <%- body %>
-        <%- partial('_partial/_footer') %>
-    </div>
+<%- partial('_partial/_topbar') %>
+<div class="container blog-content">
+    <%- body %>
 </div>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/what-input/4.2.0/what-input.min.js"></script>
-<script src="https://cdn.bootcss.com/foundation/6.5.1/js/foundation.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.13.1/highlight.min.js"></script>
+<%- partial('_partial/_footer') %>
+<script src="/jquery-3.6.0.min.js"></script>
 <script src="/app.js"></script>
-
 </body>
 </html>

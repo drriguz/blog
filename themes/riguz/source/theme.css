@@ -1,0 +1,38 @@
+body {
+    background: #f7f7f8;
+    font-family: "Trebuchet MS", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+}
+.blog-item {
+    margin-bottom: 5px;
+}
+
+.blog-content {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.blog-tags {
+    margin-top: 10px;
+}
+.blog-paginator {
+    margin-top: 20px;
+}
+
+/** override bulma **/
+.navbar-link, .navbar-item {
+    font-weight: 600;
+    color      : #2c2c2c;
+    font-size  : 14px;
+}
+
+.navbar-item:hover {
+    text-decoration: underline;
+}
+
+.navbar-link:not(.is-arrowless)::after,
+.select:not(.is-multiple):not(.is-loading)::after {
+    border-width: 1px;
+    width       : 6px;
+    height      : 6px;
+    border-color: #2c2c2c;
+}

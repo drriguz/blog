@@ -1,4 +1,4 @@
-title: 一个日古子
+title: 日牯子的博客
 subtitle: 
 description: 筋肉程序员
 keywords: Riguz, soleverlee, dr riguz, solever, riguz lee, blog, programing
@@ -89,7 +89,7 @@ include:
 exclude:
 ignore:
 
-theme: ocean
+theme: riguz
 
 deploy:
   type: git

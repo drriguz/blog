@@ -1,19 +1,36 @@
-<div class="blog-post">
-    <h2><a href="<%- url_for(post.path) %>" class="blog-title"><%= post.title %></a></h2>
-    <span class="subheader"><%- date(post.date, "YYYY-MM-DD") %></span>
-    <% for(var i = 0; i < post.categories.length; i++) { %>
-    <a href="<%- url_for(post.categories.data[i].path) %>">
-        <span class="subheader blog-link">/ <%= post.categories.data[i].name %></span>
-    </a>
-    <% } %>
-    <%- post.excerpt %>
-    <p class="blog-post-more-mark">...</p>
-    <div>
-        <% for(var i = 0; i < post.tags.length; i++) { %>
-        <a href="<%- url_for(post.tags.data[i].path) %>">
-            <span class="blog-tag"><i class="fa fa-tag"></i><%= post.tags.data[i].name %></span>
-        </a>
-        <% } %>
+<article class="card blog-item">
+    <!-- <header class="card-header">
+        <p class="card-header-title">
+            <a href="<%- url_for(post.path) %>" class="blog-title"><%= post.title %></a>
+        </p>
+      </header> -->
+    <div class="card-content">
+        <div class="content">
+            <a href="<%- url_for(post.path) %>" class="blog-title"><h4><%= post.title %></h4></a>
+            <!-- <div class="blog-category">
+                <% for(var i = 0; i < post.categories.length; i++) { %>
+                    <a href="<%- url_for(post.categories.data[i].path) %>">
+                        <span class="subheader blog-link">/ <%= post.categories.data[i].name %></span>
+                    </a>
+                <% } %>
+            </div> -->
+            
+            <div class="subtitle is-6">
+                <%- date(post.date, "YYYY-MM-DD") %>
+                <% for(var i = 0; i < post.categories.length; i++) { %>
+                    <a href="<%- url_for(post.categories.data[i].path) %>">
+                        <span class="subheader blog-link">/ <%= post.categories.data[i].name %></span>
+                    </a>
+                <% } %>
+            </div>
+            <%- post.excerpt %>
+            <div class="blog-tags">
+                <% for(var i = 0; i < post.tags.length; i++) { %>
+                    <a href="<%- url_for(post.tags.data[i].path) %>">
+                        <span class="tag is-primary is-light"><%= post.tags.data[i].name %></span>
+                    </a>
+                <% } %>
+            </div>
+        </div>
     </div>
-    <hr>
-</div>
+</article>

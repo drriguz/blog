@@ -37,24 +37,4 @@
       <% }%>
     </div>
   </div>
-  <% if(theme.gitalk.enabled) {%>
-  <div class="grid-x grid-margin-x blog-page-comment">
-    <div class="medium-8 medium-offset-2 small-12 cellt">
-      <div id="blog-page-comment-container"></div>
-      <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-      <script>
-        var gitalk = new Gitalk({
-          clientID: '<%= theme.gitalk.clientId %>',
-          clientSecret: '<%= theme.gitalk.clientSecret %>',
-          repo: '<%= theme.gitalk.repo %>',
-          owner: '<%= theme.gitalk.owner %>',
-          admin: ['<%= theme.gitalk.owner %>'],
-          id: '<%= page.path %>',
-          distractionFreeMode: <%= theme.gitalk.distractionFreeMode %>
-        })
-        gitalk.render('blog-page-comment-container')
-      </script>
-    </div>
-  </div>
-<% }%>
 </article>
