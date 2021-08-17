@@ -1,5 +1,5 @@
 <div class="blog-item-container columns">
-    <div class="column is-half">
+    <div class="column is-three-fifths">
         <% page.posts.each(function (post) { %>
             <%- partial('_partial/_post', {post}) %>
             <% }) 
@@ -7,6 +7,6 @@
         <%- partial('_partial/_paginator') %>
     </div>
     <div class="column">
-
+        <%- partial('_partial/_tags') %>
     </div>
 </div>

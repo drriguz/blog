@@ -6,14 +6,34 @@ body {
     margin-bottom: 5px;
 }
 
-.blog-content {
+.main-content {
     margin-top: 20px;
     padding: 20px;
 }
+.blog-title {
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+}
+.blog-content> p{
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
 
+.blog-meta {
+    margin-top: 10px;
+    font-size: small;
+    color: #7d7d7d;
+}
+
+.blog-link {
+    font-size: small;
+}
 .blog-tags {
     margin-top: 10px;
 }
+
 .blog-paginator {
     margin-top: 20px;
 }

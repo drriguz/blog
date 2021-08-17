@@ -1,0 +1,19 @@
+<div class="card blog-item">
+    <div class="card-content">
+        <h1>标签</h1>
+        <%
+            var styles = ['is-primary', 'is-info', 'is-link', 'is-success', 'is-warning', 'is-danger'];
+            function getRandomIntInclusive(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+            }
+        %>
+    
+        <% for(var i = 0; i < site.tags.length; i++) { %>
+            <a href="<%- url_for(site.tags.data[i].path) %>">
+                <span class="tag <%- styles[getRandomIntInclusive(0, styles.length -1)] %> is-light"><%- site.tags.data[i].name %></span>
+            </a>
+        <% } %>
+    </div>
+</div>
