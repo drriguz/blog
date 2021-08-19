@@ -1,0 +1,41 @@
+<% 
+    var mapping = {};
+
+    for(var i = 0; i < site.categories.length; i++) {
+        var children = mapping[site.categories.data[i].parent];
+        if(children == undefined)
+            children = [];
+        children.push(site.categories.data[i]);
+        mapping[site.categories.data[i].parent] = children;
+    }
+%>
+
+<%
+function makeCategory(category) { %>
+    <li>
+        <a href="<%= url_for(category.path) %>"><%- category.name %></a>
+        <% if(mapping[category._id] != undefined) { %>
+            <ul>
+            <% for(var i = 0; i < mapping[category._id].length; i++) {
+                makeCategory(mapping[category._id][i]);
+            } %>
+            </ul>
+        <% } %>
+    </li>      
+<%}
+%>
+
+
+<aside class="menu">
+    <p class="menu-label">
+      博客分类
+    </p>
+    <ul class="menu-list">
+        <%
+        for(var i = 0; i < site.categories.length; i++) {
+            if(site.categories.data[i].parent == undefined)
+                makeCategory(site.categories.data[i]);
+        }
+        %>
+    </ul>
+  </aside>

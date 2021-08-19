@@ -1,6 +1,10 @@
 <div class="card blog-item">
-    <div class="card-content">
-        <h1>标签</h1>
+    <header class="card-header">
+        <p class="card-header-title">
+            标签
+        </p>
+    </header>
+    <div class="card-content tag-cloud">
         <%
             var styles = ['is-primary', 'is-info', 'is-link', 'is-success', 'is-warning', 'is-danger'];
             function getRandomIntInclusive(min, max) {
@@ -12,7 +16,10 @@
     
         <% for(var i = 0; i < site.tags.length; i++) { %>
             <a href="<%- url_for(site.tags.data[i].path) %>">
-                <span class="tag <%- styles[getRandomIntInclusive(0, styles.length -1)] %> is-light"><%- site.tags.data[i].name %></span>
+                <span class="tag <%- styles[getRandomIntInclusive(0, styles.length -1)] %> is-light"
+                    weight="<%- site.tags.data[i].posts.length %>">
+                    <%- site.tags.data[i].name %>
+                </span>
             </a>
         <% } %>
     </div>

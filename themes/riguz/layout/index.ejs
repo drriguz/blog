@@ -1,4 +1,7 @@
 <div class="blog-item-container columns">
+    <div class="column">
+        <%- partial('_partial/_leftbar') %>
+    </div>
     <div class="column is-three-fifths">
         <% page.posts.each(function (post) { %>
             <%- partial('_partial/_post', {post}) %>
@@ -7,6 +10,7 @@
         <%- partial('_partial/_paginator') %>
     </div>
     <div class="column">
+        <%- partial('_partial/_recommended') %>
         <%- partial('_partial/_tags') %>
     </div>
 </div>
