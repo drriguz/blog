@@ -1,0 +1,12 @@
+<div class="collection-container">
+    <div class="collection-cover">
+        <img src="<%- url_for(collection.cover) %>">
+    </div>
+    <div class="collection-description">
+        <div class="collection-title">
+            <a href="<%- url_for(collection.raw.path) %>"><%- collection.tag %></a>
+        </div>
+        <div class="description-content"><%- collection.description %></div>
+        <div><span class="tag is-light">共 <%- collection.raw.posts.length %> 篇文章</span></div>
+    </div>
+</div>

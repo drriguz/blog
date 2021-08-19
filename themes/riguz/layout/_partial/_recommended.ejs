@@ -5,21 +5,18 @@
         </p>
     </header>
     <div class="card-content tag-cloud">
-        <ul>
-            <% 
-            if(theme.recommended_tags != undefined) {
-                for(var i = 0; i < site.tags.length; i++) {
-                    if(theme.recommended_tags.find(e => e == site.tags.data[i].name)) { %>
-                        <li>
-                            <a href="<%- url_for(site.tags.data[i].path) %>">
-                                <%- site.tags.data[i].name %>
-                                <span class="tag is-light">共<%- site.tags.data[i].posts.length %>篇文章</span>
-                            </a>
-                        </li>
-                    <% }    
+        <% 
+        var collections = theme.recommended_tags || [];
+        for(var i = 0; i < collections.length; i++) {
+            for(var j = 0; j < site.tags.length; j ++) {
+                if(site.tags.data[j].name == collections[i].tag) {
+                    collections[i].raw = site.tags.data[j];
                 }
             }
-            %>
-        </ul>
+        }
+
+        for(var h = 0; h < collections.length; h++) {%>
+            <%- partial('_partial/_collection', {collection: collections[h]}) %>        
+        <% } %>
     </div>
 </div>

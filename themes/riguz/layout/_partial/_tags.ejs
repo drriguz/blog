@@ -12,16 +12,32 @@
                 max = Math.floor(max);
                 return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
             }
+            var tags = [];
+            for(var i = 0; i < site.tags.length; i++) {
+                if(theme.recommended_tags != undefined && 
+                    !theme.recommended_tags.find(e => e == site.tags.data[i].name)) {
+                        tags.push({
+                            name: site.tags.data[i].name,
+                            path: site.tags.data[i].path,
+                            posts: site.tags.data[i].posts.length
+                        });
+                    }
+            }
+            tags.sort((a, b) => {
+                return b.posts - a.posts;
+            });
+            var maxCount = theme.tag_cloud_max_count || tags.length;
         %>
     
-        <% for(var i = 0; i < site.tags.length; i++) { 
+        <% for(var i = 0; i < maxCount; i++) { 
             if(theme.recommended_tags != undefined && 
-                !theme.recommended_tags.find(e => e == site.tags.data[i].name)) {
+                !theme.recommended_tags.find(e => e == tags[i].name)) {
             %>
-            <a href="<%- url_for(site.tags.data[i].path) %>">
+            <a href="<%- url_for(tags[i].path) %>">
                 <span class="tag <%- styles[getRandomIntInclusive(0, styles.length -1)] %> is-light"
-                    weight="<%- site.tags.data[i].posts.length %>">
-                    <%- site.tags.data[i].name %>
+                    weight="<%- tags[i].posts.length %>">
+                    <%- tags[i].name %>
+                    <sub>(<%- tags[i].posts %>)</sub>
                 </span>
             </a>
         <% }} %>

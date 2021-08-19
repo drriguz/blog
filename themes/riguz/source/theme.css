@@ -38,6 +38,41 @@ body {
     margin-top: 20px;
 }
 
+.recommended-article {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.collection-container {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.collection-cover {
+    width: 60px;
+    min-width: 60px;
+    height: 80px;
+    border: 1px solid #80808024;
+    box-shadow: 4px 4px 2px #f5d3d3;
+}
+
+.collection-description {
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.collection-description .collection-title {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.collection-description .description-content {
+    font-size: 12px;
+}
+
 /** override bulma **/
 .navbar-link, .navbar-item {
     font-weight: 600;

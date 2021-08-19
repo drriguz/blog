@@ -1,6 +1,11 @@
 favicon: /images/cat_128.png
 copyright: 2016-2018 Riguz Lee All rights reserved<br/><a href="http://www.miitbeian.gov.cn/" class="blog-link">鄂ICP备15003868号-1</a>
 recommended_tags:
-  - ~LaTeX入门
-  - ~理解Java并发
+  - tag: ~LaTeX入门
+    cover: /images/LaTeX_cover.png
+    description: 介绍LaTeX的一些实用用法
+  - tag: ~理解Java并发
+    cover: /images/OpenJDK.png
+    description: JVM并发机制浅析
+tag_cloud_max_count: 20
 

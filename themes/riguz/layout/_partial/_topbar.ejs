@@ -15,18 +15,6 @@
       <div class="navbar-start">
         <a class="navbar-item">首页</a>
         <a class="navbar-item">归档</a>
-        <a class="navbar-item">标签</a>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">博客分类</a>
-          <div class="navbar-dropdown">
-            <% site.categories.each(i => { %>
-                <a class="navbar-item" href="<%= url_for(i.path) %>">
-                    <%= i.name %>
-                </a>
-            <% }) %>
-          </div>
-        </div>
-        <a class="navbar-item">切换语言</a>
       </div>
     </div>
   </nav>
