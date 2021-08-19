@@ -64,6 +64,8 @@ feed:
 default_category: uncategorized
 category_map:
 tag_map:
+  ~LaTeX入门: Collection-LaTeX
+  ~理解Java并发: Collection-Java-Concurrent
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta

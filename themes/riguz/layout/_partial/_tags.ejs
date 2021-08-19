@@ -14,13 +14,16 @@
             }
         %>
     
-        <% for(var i = 0; i < site.tags.length; i++) { %>
+        <% for(var i = 0; i < site.tags.length; i++) { 
+            if(theme.recommended_tags != undefined && 
+                !theme.recommended_tags.find(e => e == site.tags.data[i].name)) {
+            %>
             <a href="<%- url_for(site.tags.data[i].path) %>">
                 <span class="tag <%- styles[getRandomIntInclusive(0, styles.length -1)] %> is-light"
                     weight="<%- site.tags.data[i].posts.length %>">
                     <%- site.tags.data[i].name %>
                 </span>
             </a>
-        <% } %>
+        <% }} %>
     </div>
 </div>

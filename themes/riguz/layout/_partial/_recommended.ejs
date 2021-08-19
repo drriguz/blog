@@ -6,8 +6,20 @@
     </header>
     <div class="card-content tag-cloud">
         <ul>
-            <li><a>理解Java并发</a></li>
-            <li><a>理解Java并发</a></li>
+            <% 
+            if(theme.recommended_tags != undefined) {
+                for(var i = 0; i < site.tags.length; i++) {
+                    if(theme.recommended_tags.find(e => e == site.tags.data[i].name)) { %>
+                        <li>
+                            <a href="<%- url_for(site.tags.data[i].path) %>">
+                                <%- site.tags.data[i].name %>
+                                <span class="tag is-light">共<%- site.tags.data[i].posts.length %>篇文章</span>
+                            </a>
+                        </li>
+                    <% }    
+                }
+            }
+            %>
         </ul>
     </div>
 </div>

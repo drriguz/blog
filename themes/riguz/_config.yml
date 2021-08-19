@@ -1,16 +1,6 @@
 favicon: /images/cat_128.png
 copyright: 2016-2018 Riguz Lee All rights reserved<br/><a href="http://www.miitbeian.gov.cn/" class="blog-link">鄂ICP备15003868号-1</a>
-theme: light
-highlight:
-  theme: vs
-gitalk:
-  enabled: true
-  clientId: 57d61245ff82e94d67b3
-  clientSecret: dac16d0960bdce5d0041def03bdcf35754308431
-  repo: soleverlee.github.io
-  owner: soleverlee
-  admin: soleverlee
-  distractionFreeMode: false
-baiduAnalysis:
-  enabled: true
-  appId: 87ca39969c1788f94d5046526af77c45
+recommended_tags:
+  - ~LaTeX入门
+  - ~理解Java并发
+

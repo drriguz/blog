@@ -7,7 +7,7 @@ categories:
 tags:
     - AQS
     - Concurrent
-    - Series-Understand-Java-Concurrent
+    - ~理解Java并发
 ---
 AQS(AbstractQueuedSynchronizer)是一个机遇FIFO等待队列实现锁的框架，用来实现诸如ReentrantLock、Semaphore等。
 
