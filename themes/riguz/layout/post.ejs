@@ -1,14 +1,22 @@
-<article class="grid-container">
-  <div class="grid-x grid-margin-x" id="content">
-    <div class="medium-10 small-12 cell">
-      <h1 class="blog-link"><%= page.title %></h1>
-      <span class="blog-subtitle"><%- date(page.date, "YYYY-MM-DD") %></span>
-      <% for(var i = 0; i < page.categories.length; i++) { %>
-      <a href="<%- url_for(page.categories.data[i].path) %>">
-        <span class="subheader blog-link">/ <%= page.categories.data[i].name %></span>
-      </a>
-      <% } %>
-      <%- toc(page.content, {list_number: false}) %>
+<div class="columns">
+<article class="column is-three-fifths card">
+  <div class="card-content">
+    <div>
+      <h1 class="blog-title"><%= page.title %></h1>
+      <div class="blog-meta">
+        <nav class="breadcrumb blog-categories" aria-label="breadcrumbs">
+          <ul>
+            <% for(var i = 0; i < page.categories.length; i++) { %>
+              <li>
+              <a href="<%- url_for(page.categories.data[i].path) %>">
+                <%= page.categories.data[i].name %>
+              </a>
+              </li>
+              <% } %>
+          </ul>
+        </nav>
+        <div class="blog-subtitle">发布于 <%- date(page.date, "YYYY-MM-DD") %></div>
+      </div>
       <div class="blog-content">
       <%- page.content %>
       </div>
@@ -38,3 +46,7 @@
     </div>
   </div>
 </article>
+<div class="column">
+  <nav id="blog-toc"></nav>
+</div>
+</div>

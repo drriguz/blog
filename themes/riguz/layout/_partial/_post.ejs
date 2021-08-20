@@ -3,12 +3,16 @@
         <div class="blog-content">
             <a href="<%- url_for(post.path) %>" class="blog-title"><%= post.title %></a>
             <div class="subtitle blog-meta">
-                <%- date(post.date, "YYYY-MM-DD") %>
+                <div class="blog-published-time">
+                    <%- date(post.date, "YYYY-MM-DD") %>
+                </div>
+                <div class="blog-categories">
                 <% for(var i = 0; i < post.categories.length; i++) { %>
                     <a href="<%- url_for(post.categories.data[i].path) %>">
                         <span class="subheader blog-link">/ <%= post.categories.data[i].name %></span>
                     </a>
                 <% } %>
+                </div>
             </div>
             <%- post.excerpt %>
             <a href="<%- url_for(post.path) %>" class="blog-link">[阅读更多...]</a>

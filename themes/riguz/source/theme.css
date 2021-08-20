@@ -1,3 +1,10 @@
+h1 { font-size: 2em; font-weight: bold; margin-bottom: 10px; margin-top: 10px; }
+h2 { font-size: 1.8em; font-weight: bold; }
+h3 { font-size: 1.5em; font-weight: bold; }
+h4 { font-size: 1.17em; font-weight: bold; }
+h5 { font-size: 1em; font-weight: bold; }
+h6 { font-size: 0.83em; font-weight: bold; }
+
 body {
     background: #f7f7f8;
     font-family: "Trebuchet MS", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
@@ -10,22 +17,46 @@ body {
     margin-top: 20px;
     padding: 20px;
 }
+
 .blog-title {
     font-weight: bold;
     font-size: 18px;
     color: black;
 }
+
+h1.blog-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    border-bottom: 1px solid #8080802e;
+    font-family: 'SimSun', Arial, Helvetica, sans-serif;
+}
+
 .blog-content{
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 14px;
     font-weight: 500;
 }
 
+.blog-published-time {
+    padding-right: 10px; 
+}
+
 .blog-meta {
     margin-top: 10px;
     font-size: small;
     color: #7d7d7d;
+    margin-bottom: 20px;
 }
+
+#blog-toc {
+    transform: translateX(0);
+}
+
+#blog-toc>.toc-list li {
+    list-style: none;
+}
+
 
 .blog-link {
     font-size: small;
@@ -36,6 +67,10 @@ body {
 
 .blog-paginator {
     margin-top: 20px;
+}
+
+ol.toc li {
+    list-style-type: none;
 }
 
 .recommended-article {
@@ -71,6 +106,31 @@ body {
 
 .collection-description .description-content {
     font-size: 12px;
+}
+
+span.tag {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.blog-link {
+    margin-bottom: 10px;
+}
+
+.blog-meta {
+    display: flex;
+    justify-content: space-around;
+}
+
+.blog-categories {
+    flex: 1;
+}
+
+pre {
+    border: 1px dashed #fbadc775;
+    margin-top: 5px;
+    background: transparent;
+    padding: 0.5rem 0.5rem;
 }
 
 /** override bulma **/
