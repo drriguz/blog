@@ -155,3 +155,15 @@ pre {
     height      : 6px;
     border-color: #2c2c2c;
 }
+
+.blog-content ul {
+    list-style-type: square;
+}
+ol.toc-list {
+    counter-reset: item
+}
+
+ol.toc-list li:before {
+    content: counters(item, ".") " ";
+    counter-increment: item
+}

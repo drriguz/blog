@@ -5,6 +5,7 @@ tocbot.init({
     contentSelector: '.blog-content',
     headingSelector: 'h1, h2, h3',
     hasInnerContainers: true,
-    positionFixedSelector: '#blog-toc'
+    positionFixedSelector: '#blog-toc',
+    collapseDepth: 3
   });
   
