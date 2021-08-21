@@ -10,21 +10,25 @@
     <% } %>
 
     <ul class="pagination-list">
-      <li><a class="pagination-link">1</a></li>
+      <% if(page.current > 1) { %>
+      <li><a class="pagination-link" href="/">1</a></li>
+      <% } %>
       <% if(page.current - 1 > 1) { %>
       <li><span class="pagination-ellipsis">&hellip;</span></li>
       <% if(page.current - 1 > 2) { %>
-      <li><a class="pagination-link"><%- page.current - 1 %></a></li>
+      <li><a class="pagination-link" href="/page/<%- page.current -1 %>"><%- page.current - 1 %></a></li>
       <% } %>
       <% } %>
       <li><a class="pagination-link is-current"><%- page.current %></a></li>
       <% if(page.current + 1 < page.total) { %>
-      <li><a class="pagination-link"><%- page.current + 1 %></a></li>
+      <li><a class="pagination-link" href="/page/<%- page.current +1 %>"><%- page.current + 1 %></a></li>
       <% if(page.current + 2 < page.total) { %>
       <li><span class="pagination-ellipsis">&hellip;</span></li>
       <% } %>
       <% } %>
-      <li><a class="pagination-link"><%- page.total %></a></li>
+      <% if(page.current < page.total) { %>
+      <li><a class="pagination-link" href="/page/<%- page.total %>"><%- page.total %></a></li>
+      <% } %>
     </ul>
   </nav>  
 <% } %>

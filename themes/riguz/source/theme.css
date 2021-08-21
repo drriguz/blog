@@ -10,6 +10,12 @@ body {
     font-family: "Trebuchet MS", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 
+.brand {
+    background: -webkit-linear-gradient(#000, #e78200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .blog-item {
     margin-bottom: 5px;
 }
