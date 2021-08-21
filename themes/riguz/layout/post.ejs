@@ -29,19 +29,20 @@
       </div>
     </div>
   </div>
-  <div class="grid-x grid-margin-x blog-page-nav-container">
-    <div class="medium-offset-2 medium-4 small-6 cell text-left">
+
+  <div class="columns">
+    <div class="column">
       <% if(page.prev) {%>
-      <span class="blog-page-nav">上一篇:<a href="<%- url_for(page.prev.path) %>"><%= page.prev.title %></a></span>
+      <div class="blog-page-nav has-text-left">上一篇:<a href="<%- url_for(page.prev.path) %>"><%= page.prev.title %></a></div>
       <% } else {%>
-      <span class="blog-page-nav">已经是第一篇</span>
+      <div class="blog-page-nav has-text-left">已经是第一篇</div>
       <% }%>
     </div>
-    <div class="medium-4 small-6 cell text-right">
+    <div class="column">
       <% if(page.next) {%>
-      <span class="blog-page-nav">下一篇:<a href="<%- url_for(page.next.path) %>"><%= page.next.title %></a></span>
+      <div class="blog-page-nav has-text-right">下一篇:<a href="<%- url_for(page.next.path) %>"><%= page.next.title %></a></div>
       <% } else {%>
-      <span class="blog-page-nav">已经是最后一篇</span>
+      <div class="blog-page-nav has-text-right">已经是最后一篇</div>
       <% }%>
     </div>
   </div>

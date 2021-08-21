@@ -1,8 +1,8 @@
 .blog-content h1 { font-size: 2em; font-weight: bold; margin-bottom: 10px; margin-top: 10px; }
-.blog-content h2 { font-size: 1.8em; font-weight: bold; }
-.blog-content h3 { font-size: 1.5em; font-weight: bold; }
-.blog-content h4 { font-size: 1.17em; font-weight: bold; }
-.blog-content h5 { font-size: 1em; font-weight: bold; }
+.blog-content h2 { font-size: 1.8em; font-weight: bold; margin-bottom: 8px; margin-top: 8px;}
+.blog-content h3 { font-size: 1.5em; font-weight: bold; margin-bottom: 6px; margin-top: 6px;}
+.blog-content h4 { font-size: 1.17em; font-weight: bold; margin-bottom: 4px; margin-top: 4px;}
+.blog-content h5 { font-size: 1em; font-weight: bold; margin-bottom: 2px; margin-top: 2px;}
 .blog-content h6 { font-size: 0.83em; font-weight: bold; }
 
 body {
@@ -64,6 +64,21 @@ h1.blog-title {
 
 #blog-toc {
     transform: translateX(0);
+}
+
+a.toc-link {
+    color: black;
+    font-size: 14px;
+}
+
+a.is-active-link {
+    color: #e78200;
+    font-weight: bold;
+    box-shadow: 1px 2px 2px red;
+}
+
+.is-active-link::before {
+    background-color: #e78200;
 }
 
 .is-position-fixed {
@@ -145,9 +160,10 @@ span.tag {
 
 pre {
     border: 1px dashed #fbadc775;
-    margin-top: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     background: transparent;
-    padding: 0.5rem 0.5rem;
+    padding: 0.2rem 0.2rem;
 }
 
 /** override bulma **/
@@ -178,7 +194,9 @@ ol.toc-list {
 
 ol.toc-list li:before {
     content: counters(item, ".") " ";
-    counter-increment: item
+    counter-increment: item;
+    font-family: "Bradley Hand", Arial, Helvetica, sans-serif;
+    color: #03637a;
 }
 
 /* 
@@ -200,4 +218,9 @@ ol.toc-list li:before {
 
 .navbar-item img {
     max-height: 60px;
+}
+
+.blog-content ol, .blog-content ul {
+    margin: revert;
+    padding: revert;
 }
