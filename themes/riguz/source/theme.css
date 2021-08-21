@@ -167,3 +167,16 @@ ol.toc-list li:before {
     content: counters(item, ".") " ";
     counter-increment: item
 }
+
+/* 
+ * see: https://stackoverflow.com/questions/4086107/fixed-page-header-overlaps-in-page-anchors 
+ */
+
+*[id]:before { 
+    display: block; 
+    content: " "; 
+    margin-top: -60px;
+    height: 60px;
+    visibility: hidden; 
+}
+  
