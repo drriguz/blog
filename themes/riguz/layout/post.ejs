@@ -14,23 +14,27 @@
         <div class="media-right">
           <nav class="breadcrumb blog-categories" aria-label="breadcrumbs">
             <ul>
-              <% for(var i = 0; i < page.categories.length; i++) { %>
+              <% 
+              if(page.categories) {
+              for(var i = 0; i < page.categories.length; i++) { %>
                 <li>
                 <a href="<%- url_for(page.categories.data[i].path) %>">
                   <%= page.categories.data[i].name %>
                 </a>
                 </li>
-                <% } %>
+                <% }} %>
             </ul>
           </nav>
         </div>
       </div>
       <div class="blog-tags">
-        <% for(var i = 0; i < page.tags.length; i++) { %>
+        <% 
+        if(page.tags){
+        for(var i = 0; i < page.tags.length; i++) { %>
             <a href="<%- url_for(page.tags.data[i].path) %>">
                 <span class="tag is-info"><%= page.tags.data[i].name %></span>
             </a>
-        <% } %>
+        <% }} %>
       </div>
       <div class="blog-content">
       <%- page.content %>
