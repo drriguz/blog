@@ -1,33 +1,45 @@
+<%
+function extractBaseUrl(url) {
+  return '/' + url.replace(/page\/\d+\//, '');
+}
+
+function getUrl(baseUrl, page) {
+  if(page == 1)
+    return baseUrl;
+  return baseUrl + 'page/' + page + '/';
+}
+
+var pageBaseUrl = extractBaseUrl(page.current_url);
+%>
+
 <% if (page.total > 1){ %>
   <nav class="pagination is-small blog-paginator" role="navigation" aria-label="pagination">
-    <% if(page.current > 2) { %>
-      <a class="pagination-previous" href="/page/<%- page.current -1 %>">上一页</a>
-    <% } else if(page.current == 2) {%>
-      <a class="pagination-previous" href="/">上一页</a>
+    <% if(page.current > 1) { %>
+      <a class="pagination-previous" href="<%- url_for(page.prev_link) %>">上一页</a>
     <% } %>
     <% if(page.current < page.total) { %>
-      <a class="pagination-next" href="/page/<%- page.current +1 %>">下一页</a>
+      <a class="pagination-next" href="<%- url_for(page.next_link) %>">下一页</a>
     <% } %>
 
     <ul class="pagination-list">
       <% if(page.current > 1) { %>
-      <li><a class="pagination-link" href="/">1</a></li>
+      <li><a class="pagination-link" href="<%- getUrl(pageBaseUrl, 1) %>">1</a></li>
       <% } %>
       <% if(page.current - 1 > 1) { %>
       <li><span class="pagination-ellipsis">&hellip;</span></li>
       <% if(page.current - 1 > 2) { %>
-      <li><a class="pagination-link" href="/page/<%- page.current -1 %>"><%- page.current - 1 %></a></li>
+      <li><a class="pagination-link" href="<%- getUrl(pageBaseUrl,  page.current -1) %>"><%- page.current - 1 %></a></li>
       <% } %>
       <% } %>
       <li><a class="pagination-link is-current"><%- page.current %></a></li>
       <% if(page.current + 1 < page.total) { %>
-      <li><a class="pagination-link" href="/page/<%- page.current +1 %>"><%- page.current + 1 %></a></li>
+      <li><a class="pagination-link" href="<%- getUrl(pageBaseUrl,  page.current +1) %>"><%- page.current + 1 %></a></li>
       <% if(page.current + 2 < page.total) { %>
       <li><span class="pagination-ellipsis">&hellip;</span></li>
       <% } %>
       <% } %>
       <% if(page.current < page.total) { %>
-      <li><a class="pagination-link" href="/page/<%- page.total %>"><%- page.total %></a></li>
+      <li><a class="pagination-link" href="<%- getUrl(pageBaseUrl,  page.total) %>"><%- page.total %></a></li>
       <% } %>
     </ul>
   </nav>  
