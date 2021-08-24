@@ -1,15 +1,22 @@
-<article class="grid-container">
-    <div class="grid-x grid-margin-x" id="content">
-        <div class="medium-9 cell">
-            <ul class="post-archive">
+<div class="blog-list-container columns">
+    <div class="column is-hidden-mobile">
+        <%- partial('_partial/_leftbar') %>
+    </div>
+    <div class="column is-three-fifths">
+        <article class="categories card">
+            <ul class="post-archive card-content">
                 <% page.posts.each(function (post) { %>
                 <li class="post-item">
                     <span class="post-date"><%= date(post.date, "YYYY-MM-DD") %></span>
                     <a class="post-title" href="<%- url_for(post.path) %>"><%= post.title %></a>
                 </li>
                 <% }) %>
-            </ul>
-        </div>
+            </ul> 
+        </article>
         <%- partial('_partial/_paginator') %>
     </div>
-</article>
+    <div class="column is-hidden-mobile">
+        <%- partial('_partial/_recommended') %>
+        <%- partial('_partial/_tags') %>
+    </div>
+</div>

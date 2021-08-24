@@ -185,6 +185,13 @@ pre {
     padding: 0.2rem 0.2rem;
 }
 
+.post-item {
+    margin-bottom: 10px;
+}
+a.post-title {
+    font-weight: bold;
+}
+
 /** override bulma **/
 .navbar-link, .navbar-item {
     font-weight: 600;

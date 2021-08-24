@@ -1,14 +1,22 @@
-<article class="categories">
-    <ul class="post-archive">
-        <% page.posts.each(function (post) { %>
-        <li class="post-item">
-            <span class="post-date"><%= date(post.date, "YYYY-MM-DD") %></span>
-            <a class="post-title" href="<%- url_for(post.path) %>"><%= post.title %></a>
-        </li>
-        <% }) %>
-    </ul>
-    <% 
-        console.log(page.current_url);
-    %>
-    <%- partial('_partial/_paginator') %>
-</article>
+<div class="blog-list-container columns">
+    <div class="column is-hidden-mobile">
+        <%- partial('_partial/_leftbar') %>
+    </div>
+    <div class="column is-three-fifths">
+        <article class="categories card">
+            <ul class="post-archive card-content">
+                <% page.posts.each(function (post) { %>
+                <li class="post-item">
+                    <span class="post-date"><%= date(post.date, "YYYY-MM-DD") %></span>
+                    <a class="post-title" href="<%- url_for(post.path) %>"><%= post.title %></a>
+                </li>
+                <% }) %>
+            </ul> 
+        </article>
+        <%- partial('_partial/_paginator') %>
+    </div>
+    <div class="column is-hidden-mobile">
+        <%- partial('_partial/_recommended') %>
+        <%- partial('_partial/_tags') %>
+    </div>
+</div>

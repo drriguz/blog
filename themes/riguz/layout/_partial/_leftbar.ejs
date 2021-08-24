@@ -8,12 +8,18 @@
         children.push(site.categories.data[i]);
         mapping[site.categories.data[i].parent] = children;
     }
+
+    function getMenuClass(category) {
+        if(page.category == category)
+            return "is-active";
+        return "";
+    }
 %>
 
 <%
 function makeCategory(category) { %>
     <li>
-        <a href="<%= url_for(category.path) %>"><%- category.name %></a>
+        <a href="<%= url_for(category.path) %>" class="<%- getMenuClass(category.name) %>"><%- category.name %></a>
         <% if(mapping[category._id] != undefined) { %>
             <ul>
             <% for(var i = 0; i < mapping[category._id].length; i++) {

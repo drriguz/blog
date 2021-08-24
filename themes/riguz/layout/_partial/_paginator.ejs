@@ -22,25 +22,12 @@ var pageBaseUrl = extractBaseUrl(page.current_url);
     <% } %>
 
     <ul class="pagination-list">
-      <% if(page.current > 1) { %>
-      <li><a class="pagination-link" href="<%- getUrl(pageBaseUrl, 1) %>">1</a></li>
-      <% } %>
-      <% if(page.current - 1 > 1) { %>
-      <li><span class="pagination-ellipsis">&hellip;</span></li>
-      <% if(page.current - 1 > 2) { %>
-      <li><a class="pagination-link" href="<%- getUrl(pageBaseUrl,  page.current -1) %>"><%- page.current - 1 %></a></li>
-      <% } %>
-      <% } %>
-      <li><a class="pagination-link is-current"><%- page.current %></a></li>
-      <% if(page.current + 1 < page.total) { %>
-      <li><a class="pagination-link" href="<%- getUrl(pageBaseUrl,  page.current +1) %>"><%- page.current + 1 %></a></li>
-      <% if(page.current + 2 < page.total) { %>
-      <li><span class="pagination-ellipsis">&hellip;</span></li>
-      <% } %>
-      <% } %>
-      <% if(page.current < page.total) { %>
-      <li><a class="pagination-link" href="<%- getUrl(pageBaseUrl,  page.total) %>"><%- page.total %></a></li>
-      <% } %>
+      <% for(var i = 1; i <= page.total; i++) {  
+        if(i == page.current) { %>
+        <li><a class="pagination-link is-current" href="<%- getUrl(pageBaseUrl, i) %>"><%- i %></a></li>
+      <% } else { %>
+        <li><a class="pagination-link" href="<%- getUrl(pageBaseUrl, i) %>"><%- i %></a></li>
+      <% } }%>
     </ul>
   </nav>  
 <% } %>
