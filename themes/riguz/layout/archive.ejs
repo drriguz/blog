@@ -4,14 +4,24 @@
     </div>
     <div class="column is-three-fifths">
         <article class="categories card">
-            <ul class="post-archive card-content">
-                <% page.posts.each(function (post) { %>
-                <li class="post-item">
-                    <span class="post-date"><%= date(post.date, "YYYY-MM-DD") %></span>
-                    <a class="post-title" href="<%- url_for(post.path) %>"><%= post.title %></a>
-                </li>
-                <% }) %>
-            </ul> 
+            <div class="card-content">
+                <h1 class="archive-title">
+                <% if(page.tag) { %>
+                    标签 <strong><%- page.tag %></strong> 下的文章
+                <% } else {%>
+                    所有文章
+                <% } %>
+            </h1>
+                <ul class="post-archive">
+                    <% page.posts.each(function (post) { %>
+                    <li class="post-item">
+                        <span class="post-date"><%= date(post.date, "YYYY-MM-DD") %></span>
+                        <a class="post-title" href="<%- url_for(post.path) %>"><%= post.title %></a>
+                    </li>
+                    <% }) %>
+                </ul> 
+            </div>
+            
         </article>
         <%- partial('_partial/_paginator') %>
     </div>

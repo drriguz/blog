@@ -192,6 +192,13 @@ a.post-title {
     font-weight: bold;
 }
 
+.archive-title {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: gray;
+}
+
 /** override bulma **/
 .navbar-link, .navbar-item {
     font-weight: 600;
