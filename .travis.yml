@@ -22,11 +22,11 @@ before_install:
 script:
 - hexo generate --silent
 - cd public/images
-- find . -name '*.jpg' -o --name '*.jpeg' | xargs jpegoptim --strip-all
-- optipng *.png
+- find . -name '*.jpg' -o -name '*.jpeg' | xargs jpegoptim --strip-all
+- optipng -silent *.png
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync -avz --quiet --delete $TRAVIS_BUILD_DIR/public/ blog@riguz.com/var/www/blog
+  script: rsync -avz --quiet --delete $TRAVIS_BUILD_DIR/public/ blog@riguz.com:/var/www/blog
   on:
     branch: master
