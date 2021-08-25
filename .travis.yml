@@ -7,7 +7,7 @@ branches:
   - master
 cache: npm
 addons:
-  ssh_known_hosts: 152.32.186.249
+  ssh_known_hosts: riguz.com
 before_install:
 - openssl aes-256-cbc -K $encrypted_db2095f63ba3_key -iv $encrypted_db2095f63ba3_iv
   -in deploy_rsa.enc -out deploy_rsa -d
@@ -27,6 +27,6 @@ script:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync -avz --quiet --delete $TRAVIS_BUILD_DIR/public/ blog@:152.32.186.249/var/www/blog
+  script: rsync -avz --quiet --delete $TRAVIS_BUILD_DIR/public/ blog@:riguz.com/var/www/blog
   on:
     branch: master
