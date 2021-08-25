@@ -8,7 +8,7 @@ tags:
     - Hotspot
     - JVM
     - Concurrent
-    - Series-Understand-Java-Concurrent
+    - ~理解Java并发
 ---
 学习一下Hotspot中的锁实现。
 

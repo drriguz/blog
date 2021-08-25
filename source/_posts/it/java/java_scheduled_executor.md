@@ -7,7 +7,7 @@ categories:
     - Java
 tags:
     - Concurrent
-    - Series-Understand-Java-Concurrent
+    - ~理解Java并发
 ---
 除了ThreadPoolExecutor之外，还有一种`ScheduledExecutorService`支持按照一定的延迟或者固定的间隔来执行任务。
 

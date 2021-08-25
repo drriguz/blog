@@ -7,7 +7,7 @@ categories:
     - Java
 tags:
     - Concurrent
-    - Series-Understand-Java-Concurrent
+    - ~理解Java并发
 ---
 使用多线程技术可以有效的利用CPU时间，在同一个时间内完成更多的任务，但同时值得注意的是，线程创建本身也是有开销的，线程池使得我们可以重复的利用已经存在的线程，从而节省这一部分的开销，提高程序的效率。
 

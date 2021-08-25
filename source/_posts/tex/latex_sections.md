@@ -6,7 +6,7 @@ categories:
     - TeX
 tags:
     - LaTeX
-    - Series-LaTeX
+    - ~LaTeX入门
 ---
 
 LaTeX适用于学术论文等的写作，在这类文章中一个很重要的部分就是段落和章节了。回想起当年使用Word写作的时候调整标题是何等的痛苦，那么在LaTeX中是怎样设置段落和章节的呢？

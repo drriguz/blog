@@ -6,7 +6,7 @@ categories:
     - Java
 tags:
     - Concurrent
-    - Series-Understand-Java-Concurrent
+    - ~理解Java并发
 ---
 线程是操作系统中进行运算调度的最小单位，它是一个单一顺序的控制流，不论是对于单核还是多核的CPU，都能比较有效的提高程序的吞吐率。在Java中，创建一个线程的唯一方法是创建一个`Thread`类的实例，并调用`start()`方法以启动该线程。然而当多个线程同时执行时，如何保证线程之间是按照我们期待的方式在运行呢？Java提供了多种机制来保证多个线程之间的交互。
 <!-- more -->

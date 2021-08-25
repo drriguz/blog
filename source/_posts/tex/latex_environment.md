@@ -5,6 +5,7 @@ date: 2020-02-06
 categories:  
     - TeX
 tags:
+    - LaTeX
     - ~LaTeX入门
 ---
 
