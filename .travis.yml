@@ -27,6 +27,6 @@ script:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync -avz --quiet --delete $TRAVIS_BUILD_DIR/public/ blog@:riguz.com/var/www/blog
+  script: rsync -avz --quiet --delete $TRAVIS_BUILD_DIR/public/ blog@riguz.com/var/www/blog
   on:
     branch: master
