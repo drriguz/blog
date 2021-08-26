@@ -6,7 +6,7 @@ categories:
     - TeX
 tags:
     - LaTeX
-    - Series-LaTeX
+    - ~LaTeX入门
 ---
 
 在LaTeX中插入图片有些类似于Markdown中的方式。

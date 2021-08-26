@@ -31,7 +31,7 @@ external_link:
   enable: true # Open external links in new tab
   field: site # Apply to the whole site
   exclude: ''
-filename_case: 0
+filename_case: 1
 render_drafts: false
 post_asset_folder: false
 relative_link: false
@@ -63,9 +63,24 @@ feed:
 # Category & Tag
 default_category: uncategorized
 category_map:
+  闲话编程: programming
+  刨根问底: dig
+  分布式服务: distributed
+  算法: algorithm
+  移动端: mobile
+  容器化: container
+  工具/平台: platform
+  框架/库: framework
+  数据库: database
+  缓存: cache
+  协议: protocol
+  其他语言: lang
+  其他: misc
+
 tag_map:
-  ~LaTeX入门: Collection-LaTeX
-  ~理解Java并发: Collection-Java-Concurrent
+  ~LaTeX入门: collection-latex
+  ~理解Java并发: collection-java-concurrent
+  微服务: microservice
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
