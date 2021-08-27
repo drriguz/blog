@@ -6,7 +6,7 @@ author: Riguz Lee
 language:
 timezone:
 
-url:  https://riguz.com
+url:  https://blog.riguz.com
 root: /
 permalink: :title/
 permalink_defaults:
