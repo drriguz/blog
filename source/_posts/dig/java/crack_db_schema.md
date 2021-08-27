@@ -11,13 +11,13 @@ categories:
 首先是找到dbschema.jar，这是程序的主要jar包，其他是一些第三方的jar包和jdbc驱动等，于是它就是破解的关键。利用jd-gui反编译这个jar包，首先把源码都保存下来。
 
 顺藤摸瓜，首先打开dbschema的注册窗口，根据里面的关键字搜索，比如Registration，然后一个个去找，这时，发现一个对话框：
-<pre>
-<code class="java">
+
+```java
 public class RegistrationDialog
 ...
 JButton localJButton1 = new JButton(getAction("register"));
-<code>
-</pre>
+```
+
 这不就是注册的按钮么？然后就看它的action:
 ```java
 /*     */   public void register() {
