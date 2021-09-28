@@ -66,7 +66,7 @@ Bob今天不是特别开心，但是这个就是规矩:吃沙拉的不需要等�
 
 当发生上下文切换的时候，操作系统需要将当前任务的状态保存到PCB(process control block)中，其实就是内存中的一个区域，并加载要切换的任务的PCB。
 
-![](/images/Context-Switching.png)
+![](/images/Context-Switching.jpg)
 
 通过上下文切换的方式，操作系统实现了多任务处理，而根据处理策略的不同又可以分为:
 
