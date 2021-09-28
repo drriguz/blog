@@ -1,5 +1,5 @@
 ---
-title: 深入C#异步编程
+title: C#异步编程(1)：并发的实现基础
 date: 2021-09-01
 categories:  
     - 闲话编程
@@ -96,64 +96,6 @@ Bob今天不是特别开心，但是这个就是规矩:吃沙拉的不需要等�
 * 通信顺序进程(communicating sequential process): 用于描述两个独立的并发实体通过共享的通讯 channel(管道)进行通信的并发模型。 CSP中channel是第一类对象，它不关注发送消息的实体，而关注与发送消息时使用的channel。比如Go语言通过goroutine和channel实现了基于CSP的并发编程。
 
 从编程语言的角度考虑，主要有两个问题：一个是如何实现并发？是采取多线程、还是基于事件来实现？另一个就是程序员如何来编写代码控制并发程序的运行？是采取回调，还是aysnc/await这样的语法？而经常语言会提供不止一种方式，也可能会将各种方式组合起来。
-
-# C#中的异步编程
-
-如果是I/O密集型应用，我们希望在等待I/O的时候能够做点别的事情；如果是CPU密集型应用，我们也可能需要在等待计算的时候干点别的事情。C#语言在不断的完善的过程中也在不断从语言本身降低异步编程的复杂性。
-
-## C#支持的异步编程模式
-
-C#中支持下面这些异步编程模式:
-
-* APM(Asynchronous Programming Model): 也叫IAsyncResult pattern，实现方式是对异步任务需要编写开始和结束的方法(方法名需要分别以Begin和End开头)，但现在这种方式已经不被推荐使用
-* EAP(Event-based Asynchronous Pattern): 基于事件的实现方式，方法名必须以Async结尾并结合event来使用。这种方式不推荐使用了。
-* TAP(Task-based Asynchronous Pattern): C# 5.0引入的新方式，跟前面两种方式不一样，在同一个方法里面来表示操作的开始和结束，并使用async和await关键字来支持异步操作。
-
-以读取文件为例，比如读取文件到内存缓冲区，同步的方法是这样:
-
-```csharp
-public class MyClass  
-{  
-    public int Read(byte [] buffer, int offset, int count);  
-}  
-```
-
-如果要将同步读取变成异步读取，如果是APM方式，需要这样写:
-
-```csharp
-public class MyClass  
-{  
-    public IAsyncResult BeginRead(  
-        byte [] buffer, int offset, int count,
-        AsyncCallback callback, object state);  
-    public int EndRead(IAsyncResult asyncResult);  
-}  
-```
-
-如果是EAP方式的话就是这样：
-
-```csharp
-public class MyClass  
-{  
-    public void ReadAsync(byte [] buffer, int offset, int count);  
-    public event ReadCompletedEventHandler ReadCompleted;  
-}  
-```
-
-可以看出，上面两种方式需要分开来写，的确不是很优雅。而TAP方式看起来跟同步方法并没有太大的区别，比较符合程序员的思维：
-
-```csharp
-public class MyClass  
-{  
-    public Task<int> ReadAsync(byte [] buffer, int offset, int count);  
-}  
-```
-
-## TAP
-### 语法及惯例
-
-* 要使用TAP，方法必须返回一个`System.Threading.Tasks.Task`或者`System.Threading.Tasks.Task<TResult>`，对应到同步版本的void方法或者带返回值的。
-* 异步方法一般以Async结尾，不能使用`out`或者`ref`来传递结果，结果必须通过返回值传递。
 
 # 其他
 ## 一些容易混淆和疑惑的概念
