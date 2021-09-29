@@ -1,9 +1,9 @@
-.blog-content h1 { font-size: 2em; font-weight: bold; margin-bottom: 10px; margin-top: 10px; }
-.blog-content h2 { font-size: 1.8em; font-weight: bold; margin-bottom: 8px; margin-top: 8px;}
-.blog-content h3 { font-size: 1.5em; font-weight: bold; margin-bottom: 6px; margin-top: 6px;}
-.blog-content h4 { font-size: 1.17em; font-weight: bold; margin-bottom: 4px; margin-top: 4px;}
-.blog-content h5 { font-size: 1em; font-weight: bold; margin-bottom: 2px; margin-top: 2px;}
-.blog-content h6 { font-size: 0.83em; font-weight: bold; }
+.blog-content h1 { font-size: 1.5em; font-weight: bold; margin-bottom: 10px; margin-top: 10px; }
+.blog-content h2 { font-size: 1.3em; font-weight: bold; margin-bottom: 8px; margin-top: 8px;}
+.blog-content h3 { font-size: 1.2em; font-weight: bold; margin-bottom: 6px; margin-top: 6px;}
+.blog-content h4 { font-size: 1em; font-weight: bold; margin-bottom: 4px; margin-top: 4px;}
+.blog-content h5 { font-size: 0.8em; font-weight: bold; margin-bottom: 2px; margin-top: 2px;}
+.blog-content h6 { font-size: 0.6em; font-weight: bold; }
 
 body {
     background: #f7f7f8;
@@ -53,7 +53,7 @@ body {
 
 h1.blog-title {
     text-align: left;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #333;
     font-family: 'SimSun', Arial, Helvetica, sans-serif;
     margin-bottom: 10px;
@@ -87,13 +87,11 @@ nav.blog-categories {
 
 a.toc-link {
     color: black;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 a.is-active-link {
-    color: #e78200;
     font-weight: bold;
-    box-shadow: 1px 2px 2px red;
 }
 
 .is-active-link::before {
@@ -232,17 +230,41 @@ ol.toc-list li:before {
     color: #03637a;
 }
 
+.blog-content {
+    counter-reset: ch1;
+}
+
+.blog-content h1 {
+    counter-reset: ch2;
+}
+.blog-content h2 {
+    counter-reset: ch3;
+}
+.blog-content h1:before {
+    content: " " counter(ch1) "、";
+    counter-increment:ch1;
+}
+
+.blog-content h2:before {
+    content: " " counter(ch1)"."counter(ch2) "、";
+    counter-increment:ch2;
+}
+
+.blog-content h3:before {
+    content: " " counter(ch1)"."counter(ch2)"."counter(ch3) "、";
+    counter-increment:ch3;
+}
+
 /* 
  * see: https://stackoverflow.com/questions/4086107/fixed-page-header-overlaps-in-page-anchors 
  */
 
-.blog-content [id]:before { 
+/* .blog-content [id]:before { 
     display: block; 
-    content: " "; 
     margin-top: -60px;
     height: 60px;
     visibility: hidden; 
-}
+} */
   
 .navbar-brand .navbar-item {
     padding: 0;
