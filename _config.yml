@@ -76,6 +76,7 @@ category_map:
   协议: protocol
   其他语言: lang
   其他: misc
+  大数据: bigdata
 
 tag_map:
   ~LaTeX入门: collection-latex
