@@ -10,10 +10,13 @@ body {
     font-family: "Trebuchet MS", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 
-.brand {
-    background: -webkit-linear-gradient(#000, #e78200);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+
+.menu {
+    font-size: 14px;
+}
+
+.menu-list a {
+    font-weight: bold;
 }
 
 .blog-item {
@@ -47,7 +50,7 @@ body {
 .blog-subtitle {
     align-self: center;
     margin-left: 20px;
-    font-size: 16px;
+    font-size: 12px;
     color: gray;
 }
 
