@@ -9,8 +9,6 @@ Log4j2突然爆出个大漏洞，闹得全世界都在修这个问题。但这�
 
 <!-- more -->
 
-# 漏洞的原理
-
 # 如何复现
 ## 准备复现环境
 
@@ -102,3 +100,5 @@ mvn clean package -D"maven.test.skip"=true
 
 * https://nosec.org/home/detail/4917.html
 * https://github.com/apache/logging-log4j2/commit/7fe72d6
+* https://securityboulevard.com/2021/12/log4shell-jndi-injection-via-attackable-log4j/
+* https://nvd.nist.gov/vuln/detail/CVE-2021-44228
