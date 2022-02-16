@@ -1,4 +1,4 @@
-title: 日牯子技术
+title: 也是日牯子
 subtitle: 不见得很有技术，但是很有态度~
 description: 筋肉程序员
 keywords: Riguz, soleverlee, dr riguz, solever, riguz lee, blog, programing
@@ -44,7 +44,7 @@ highlight:
 
 index_generator:
   path: ''
-  per_page: 10
+  per_page: 5
   order_by: -date
 search:
   path: search.json

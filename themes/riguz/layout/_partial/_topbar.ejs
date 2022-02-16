@@ -1,8 +1,43 @@
-<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+<% 
+    var mapping = {};
+
+    for(var i = 0; i < site.categories.length; i++) {
+        var children = mapping[site.categories.data[i].parent];
+        if(children == undefined)
+            children = [];
+        children.push(site.categories.data[i]);
+        mapping[site.categories.data[i].parent] = children;
+    }
+
+    function getMenuClass(category) {
+        if(page.category == category)
+            return "is-active";
+        return "";
+    }
+%>
+
+<%
+function makeCategory(category) { %>
+  <% if(mapping[category._id] != undefined) { %>
+    <div class="navbar-item has-dropdown is-hoverable">
+      <a href="<%= url_for(category.path) %>" class="navbar-link <%- getMenuClass(category.name) %>"><%- category.name %></a>
+      <div class="navbar-dropdown">
+        <% for(var i = 0; i < mapping[category._id].length; i++) {
+          makeCategory(mapping[category._id][i]);
+        } %>
+      </div>
+    </div>
+  <% } else { %>
+    <a href="<%= url_for(category.path) %>" class="navbar-item <%- getMenuClass(category.name) %>"><%- category.name %></a>
+  <% } %>
+<%}
+%>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="/">
+      <a class="navbar-item brand" href="/">
         <img src="<%= url_for(theme.logo) %>">
-        <span class="brand is-size-5"><%= config.title %></span>
+        <span class="is-size-5"><%= config.title %></span>
       </a>
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="topNavBar">
         <span aria-hidden="true"></span>
@@ -12,12 +47,16 @@
     </div>
 
     <div id="topNavBar" class="navbar-menu">
-      <div class="navbar-start">
-        <span class="blog-subtitle"><%= config.subtitle %></span>
-      </div>
       <div class="navbar-end">
+       
+        <%
+        for(var i = 0; i < site.categories.length; i++) {
+            if(site.categories.data[i].parent == undefined)
+                makeCategory(site.categories.data[i]);
+        }
+        %>
         <a class="navbar-item" href="<%- url_for('/archives') %>">
-          博客归档
+          归档
         </a>
       </div>
     </div>

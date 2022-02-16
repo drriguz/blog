@@ -8,23 +8,28 @@
     <meta name="description" content="<%= config.description %>"/>
     <meta name="author" content="<%= config.author %>"/>
     <link rel="shortcut icon " type="images/x-icon" href="<%- url_for(theme.favicon) %>">
-    <link rel="stylesheet"
-      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/vs.min.css">
+    <%- css('solarized-dark.min.css') %>
     <%- css('bulma.min.css') %>
     <%- css('tocbot.css') %>
+    <%- css('override.css') %>
     <%- css('theme.css') %>
 </head>
 <body>
+<div id="birds-canvas"></div>
 <%- partial('_partial/_topbar') %>
 <div class="container main-content">
     <%- body %>
 </div>
+
 <%- partial('_partial/_footer') %>
+
 <script src="/jquery-3.6.0.min.js"></script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/highlight.min.js"></script>
+<script src="/snap.svg-min.js"></script>
 <script src="/tocbot.min.js"></script>
+<script src="/three.min.js"></script>
+<script src="/vanta.birds.min.js"></script>
+<script src="/highlight.min.js"></script>
+<script id="MathJax-script" async src="/tex-mml-chtml.js"></script>
 <script src="/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,60 @@
+
+.breadcrumb {
+    font-size: 14px;
+}
+
+.navbar-brand .navbar-item {
+    padding: 0;
+    margin-left: 20px;
+}
+
+.navbar-item img {
+    max-height: 36px;
+}
+
+.card {
+    background-color: transparent;
+    border-bottom: 1px dashed #efefef2b;
+}
+
+.pagination-link, .pagination-next, .pagination-previous {
+    color: #f68731;
+}
+.pagination-link:hover, .pagination-next:hover, .pagination-previous:hover {
+    color: #fff;
+}
+
+.navbar {
+    padding: 10px 20px 10px 20px ;
+}
+
+.navbar-link, .navbar-item {
+    font-weight: 600;
+    color      : #2c2c2c;
+    font-size  : 14px;
+}
+
+a.brand, a.brand:hover {
+    color: #f68731;
+}
+
+.navbar-item:hover {
+    text-decoration: underline;
+}
+
+.navbar-link:not(.is-arrowless)::after,
+.select:not(.is-multiple):not(.is-loading)::after {
+    border-width: 1px;
+    width       : 6px;
+    height      : 6px;
+    border-color: #2c2c2c;
+}
+
+.card-header-title {
+    color: white;
+}
+
+/** */
+.hljs {
+    background: #002b36a3;
+}
