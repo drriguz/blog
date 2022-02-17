@@ -54,6 +54,10 @@ a.brand, a.brand:hover {
     color: white;
 }
 
+table th {
+    color: #fff9f9;
+}
+
 /** */
 .hljs {
     background: #002b36a3;
