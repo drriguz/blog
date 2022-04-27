@@ -291,3 +291,7 @@ ol.toc-list li:before {
     font-size: small;
     color: #7d7d7d;
 }
+
+.math {
+    color: white;
+}

@@ -62,3 +62,10 @@ table th {
 .hljs {
     background: #002b36a3;
 }
+
+blockquote {
+    padding: 10px;
+    font-style: italic;
+    color: gray;
+    padding-left: 20px;
+}
