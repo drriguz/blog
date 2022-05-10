@@ -140,3 +140,11 @@ An acceptor can accept a proposal numbered n iff it has not responded to a prepa
 * 提交阶段：如果从多数派接受者收到的响应
 
 是不是真的很简单？
+
+Ref:
+
+* [Paxos Made Simple](https://lamport.azurewebsites.net/pubs/paxos-simple.pdf)
+* [Paxos made simple, invariant P2c](https://cstheory.stackexchange.com/questions/33504/paxos-made-simple-invariant-p2c)
+* [Paxos算法](https://zh.wikipedia.org/wiki/Paxos%E7%AE%97%E6%B3%95)
+* [分布式理论：深入浅出Paxos算法](https://cloud.tencent.com/developer/article/1380841)
+* [区块链共识算法的发展现状与展望](http://www.impcia.net/Uploads/image/file/20190712/20190712110112_58958.pdf)
