@@ -39,6 +39,7 @@
       <div class="blog-content">
       <%- page.content %>
     </div>
+    <div id="gitalk-container"></div>
   </div>
 
   <div class="columns">
@@ -64,3 +65,18 @@
   </div>
 </div>
 </div>
+<%- css('https://unpkg.com/gitalk/dist/gitalk.css') %>
+<%- js('https://unpkg.com/gitalk/dist/gitalk.min.js') %>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'eef104d0af3f1fa5b9c8',
+    clientSecret: '881d2f3387d10c0fb2f4e7ee8281e326b69e9df6',
+    repo: 'blog-gitalk',
+    owner: 'drriguz',
+    admin: ['drriguz'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+  console.log(location.pathname);
+  gitalk.render('gitalk-container')
+</script>
