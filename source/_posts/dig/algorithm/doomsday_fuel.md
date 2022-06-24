@@ -174,7 +174,7 @@ Output:
 
 $$
 \begin{align}
-& Q=\begin{pmatrix} 0 & \frac{1}{3} \\ 0 & 0 \end{pmatrix} \\
+& Q=\begin{pmatrix} 0 & \frac{2}{3} \\ 0 & 0 \end{pmatrix} \\
 & R=\begin{pmatrix} \frac{1}{3} & 0 & 0 \\ 0 & \frac{3}{7}  & \frac{4}{7}\end{pmatrix} \\
 & I_{t} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \\
 & N = \begin{pmatrix} 1 & \frac{2}{3} \\ 0 & 1 \end{pmatrix} \\
