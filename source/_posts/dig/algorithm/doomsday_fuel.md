@@ -181,3 +181,328 @@ $$
 & B = \begin{pmatrix} \frac{1}{3} & \frac{2}{7} & \frac{8}{21} \\ 0 & \frac{3}{7} & \frac{4}{7} \end{pmatrix} 
 \end{align}
 $$
+
+# 代码实现
+原理已经掌握，但是要用代码实现仍然十分麻烦，主要是涉及到很多矩阵计算，以及一些其他的数学运算。因此，在实际开始计算马尔科夫链之前，需要写一些辅助类来。
+
+## 分式计算
+首先是需要将题目中所有的运算都转化为分式运算，最终的结果也是通过分式表示的，而不是浮点数。另外，即便允许使用浮点数，在计算过程中直接用浮点数计算也会导致累积误差。
+
+```java
+public class Fraction {
+    private final int numerator;
+    private final int denominator;
+
+    public Fraction(int numerator, int denominator) {
+        if (denominator == 0) {
+            throw new IllegalArgumentException("Denominator should not be zero");
+        }
+        this.numerator = numerator;
+        this.denominator = denominator;
+    }
+}
+```
+分式直接表示为分子/分母的形式即可。
+
+### 最大公约数、最小公倍数计算
+分式的计算本身非常简单，但是需要对分式进行约分，就需要来计算最大公约数(GCD)、最小公倍数（LCM）了。使用欧几里得法计算GCD（又称为辗转相除法）：
+
+$$
+gcd(a,b) = gcd(b, a\%b)
+$$
+
+```java
+public static int gcd(int m, int n) {
+    return m % n == 0 ? n : gcd(n, m % n);
+}
+
+public static int lcm(int m, int n) {
+    return m * n / gcd(m, n);
+}
+```
+
+### 分式四则运算及约分
+在以上的基础上就可以实现分式的四则运算及约分操作了。
+
+```java
+public Fraction reduce() {
+    int gcd = Math.gcd(numerator, denominator);
+    int n = numerator / gcd, d = denominator / gcd;
+    boolean swap = d < 0;
+    return new Fraction(swap ? -n : n, swap ? -d : d);
+}
+
+public Fraction negative() {
+    return new Fraction(-numerator, denominator);
+}
+
+public Fraction reciprocal() {
+    return new Fraction(denominator, numerator);
+}
+
+public Fraction convert(int common) {
+    int factor = common / denominator;
+    return new Fraction(numerator * factor, common);
+}
+
+public Fraction add(Fraction another) {
+    int common = Math.lcm(denominator, another.denominator);
+    Fraction a = convert(common), b = another.convert(common);
+    return new Fraction(a.numerator + b.numerator,
+            common)
+            .reduce();
+}
+
+public Fraction subtract(Fraction another) {
+    return add(another.negative());
+}
+
+public Fraction multiply(Fraction another) {
+    return new Fraction(numerator * another.numerator,
+            denominator * another.denominator)
+            .reduce();
+}
+
+public Fraction divide(Fraction another) {
+    return multiply(another.reciprocal());
+}
+```
+## 矩阵运算
+因全部使用分式来进行计算，所以矩阵可以定义为：
+
+```java
+public class Matrix {
+    private final Fraction[][] matrix;
+    private final int rows;
+    private final int columns;
+
+    public Matrix(int rows, int columns) {
+        this.rows = rows;
+        this.columns = columns;
+        this.matrix = new Fraction[rows][columns];
+    }
+}
+```
+
+### 矩阵减法
+
+我们需要用到矩阵的减法，减法十分简单，直接对于每一个元素减去对应的位置的元素即可:
+
+```java
+public Matrix subtract(Matrix another) {
+    if (this.rows != another.rows || this.columns != another.columns) {
+        throw new IllegalArgumentException("Unable to add two matrix with different size");
+    }
+    Fraction[][] result = new Fraction[rows][columns];
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            result[i][j] = matrix[i][j].subtract(another.matrix[i][j]);
+        }
+    }
+    return new Matrix(result, rows, columns);
+}
+```
+
+### 矩阵乘法
+
+矩阵乘法就麻烦一点，是以左侧矩阵的行，乘以右侧列的积再加到一起，成为一个元素。
+
+```java
+public Matrix multiply(Matrix another) {
+    if (this.columns != another.rows) {
+        throw new IllegalArgumentException("Unable to add two matrix with different size");
+    }
+    Matrix r = new Matrix(rows, another.columns);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < another.columns; j++) {
+            Fraction sum = new Fraction(0, 1);
+            for (int m = 0; m < columns; m++) {
+                sum = sum.add(matrix[i][m].multiply(another.matrix[m][j]));
+            }
+            r.matrix[i][j] = sum;
+        }
+    }
+    return r;
+}
+```
+
+### 余子式及代数余子式
+要计算矩阵的逆及矩阵对应行列式的值，需要计算其余子式。余子式就是去除矩阵中m,n对应的行和列之后得到的一个子矩阵：
+
+```java
+public Matrix complementMinor(int row, int column) {
+    Matrix m = new Matrix(rows - 1, columns - 1);
+    int rowOffset = 0;
+    for (int i = 0; i < rows; i++) {
+        if (i == row) {
+            continue;
+        }
+        int columnOffset = 0;
+        for (int j = 0; j < columns; j++) {
+            if (j == column) {
+                continue;
+            }
+            m.getMatrix()[rowOffset][columnOffset] = matrix[i][j];
+            columnOffset++;
+        }
+        rowOffset++;
+    }
+    return m;
+}
+```
+而代数余子式，则需要乘以$(-1)^{m+n}$即可。
+
+### 行列式的值
+矩阵对应的行列式的值，等于其任意一列（或者行）的元素乘以对应的代数余子式的值。因此行列式的值可以递归计算得到：
+
+```java
+public Fraction determinantValue() {
+    if (rows != columns || rows < 1) {
+        throw new IllegalArgumentException("Not supported");
+    }
+    if (rows == 1) {
+        return matrix[0][0].reduce();
+    } else if (rows == 2) {
+        return matrix[0][0].multiply(matrix[1][1]).subtract(matrix[0][1].multiply(matrix[1][0]));
+    } else {
+        Fraction sum = new Fraction(0, 1);
+        for (int i = 0; i < columns; i++) {
+            Fraction sign = Fraction.of(Math.pow(-1, i));
+            sum = sum.add(matrix[0][i].multiply(sign.multiply(complementMinor(0, i).determinantValue())));
+        }
+        return sum;
+    }
+}
+```
+### 矩阵的逆
+矩阵的逆稍微麻烦，可以通过伴随矩阵的方式来计算：
+
+```java
+public Matrix adjugateMatrix() {
+    Matrix m = new Matrix(rows, columns);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            Fraction sign = Fraction.of(Math.pow(-1, (i + j)));
+            m.matrix[j][i] = sign.multiply(complementMinor(i, j).determinantValue());
+        }
+    }
+    return m;
+}
+
+public Matrix inverse() {
+    Fraction f = determinantValue();
+    Matrix adjugateMatrix = adjugateMatrix();
+    Matrix m = new Matrix(rows, columns);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            m.matrix[i][j] = adjugateMatrix.matrix[i][j].divide(f);
+        }
+    }
+    return m;
+}
+```
+
+## 马尔科夫链计算
+在有以上的辅助类的基础上，要计算马尔科夫链的吸收态概率就直接套公式就可以了。但是这一个题目还有一些地方需要处理才能得到最终结果。
+### 计算基础矩阵
+虽然题目中的例子上，吸收态是在后面的，但是其实还有一些隐含的测试用例是乱序的。因此，如果要计算出基础矩阵,首先需要对原始的概率矩阵进行排序，让瞬时态在前，吸收态在后。
+
+```java
+public static int[] solution(int[][] nums) {
+    int totalStates = nums.length, absorbingStates = 0;
+
+    Set<Integer> absorbingStateIds = new HashSet<>();
+    for (int i = 0; i < totalStates; i++) {
+        if (sum(nums[i]) == 0) {
+            absorbingStateIds.add(i);
+        }
+    }
+    absorbingStates = absorbingStateIds.size();
+    int[][] transformed = new int[totalStates][totalStates];
+
+    int [] indexMapping = new int[totalStates];
+    int offset = 0;
+    for (int i = 0; i < totalStates; i++) {
+        if(!absorbingStateIds.contains(i))
+            indexMapping[offset++] = i;
+    }
+    for(int id: absorbingStateIds){
+        indexMapping[offset++] = id;
+    }
+
+    for(int i = 0; i < totalStates; i++) {
+        for(int j = 0; j < totalStates; j++) {
+            transformed[i][j] = nums[indexMapping[i]][indexMapping[j]];
+        }
+    }
+    nums = transformed;
+    // ...
+}
+```
+应该有更简洁的办法来做这个事情，但因为这个并不是十分重要的步骤，因此偷懒用最搓的办法实现。然后，要求出基础矩阵就十分容易：
+
+```java
+Matrix matrixQ = new Matrix(transientStates, transientStates),
+        matrixR = new Matrix(transientStates, absorbingStates),
+        matrixI = new Matrix(transientStates, transientStates);
+
+for (int i = 0; i < transientStates; i++) {
+    int common = sum(nums[i]);
+    for (int j = 0; j < transientStates; j++) {
+        matrixQ.getMatrix()[i][j] = new Fraction(nums[i][j], common);
+        matrixI.getMatrix()[i][j] = i == j ? new Fraction(1, 1) :
+                new Fraction(0, 1);
+    }
+}
+
+for (int i = 0; i < transientStates; i++) {
+    int common = sum(nums[i]);
+    for (int j = 0; j < absorbingStates; j++) {
+        matrixR.getMatrix()[i][j] = new Fraction(nums[i][j + transientStates], common);
+    }
+}
+Matrix matrixN = matrixI.subtract(matrixQ).inverse();
+Matrix matrixB = matrixN.multiply(matrixR);
+```
+
+### 结果约分
+对计算结果，因为是分式的形式表示，要处理成同一个分母的形式。因此，还需要计算出多项结果的最小公倍数，并将分式转换为相同的分母：
+```java
+int[] result = new int[matrixB.getColumns() + 1];
+int lcm = 0;
+for (int i = 0; i < matrixB.getColumns(); i++) {
+    if (matrixB.getMatrix()[0][i].getNumerator() == 0) {
+        continue;
+    }
+    if (lcm == 0) {
+        lcm = matrixB.getMatrix()[0][i].getDenominator();
+    } else {
+        lcm = Math.lcm(lcm, matrixB.getMatrix()[0][i].getDenominator());
+    }
+}
+for (int i = 0; i < matrixB.getColumns(); i++) {
+    result[i] = matrixB.getMatrix()[0][i].getNumerator() * lcm /
+            matrixB.getMatrix()[0][i].getDenominator();
+}
+result[result.length - 1] = lcm;
+```
+
+### Test Case 3
+在以上实现的基础上，就可以通过除了Test Case 3之外的所有测试了。但是，有一个Test Case 3却通不过，也无法得知具体是什么测试用例：
+
+```
+foobar:~/doomsday-fuel solee.linux$ verify Solution.java 
+Verifying solution...
+Test 1 passed!
+Test 2 passed!
+Test 3 failed  [Hidden]
+Test 4 passed! [Hidden]
+Test 5 passed! [Hidden]
+Test 6 passed! [Hidden]
+Test 7 passed! [Hidden]
+Test 8 passed! [Hidden]
+Test 9 passed! [Hidden]
+Test 10 passed! [Hidden]
+```
+
+原来，还有极端的场景没有考虑到，就是如果s0就是终止态的情况。这种情况作为一个特殊前提处理即可，十分简单，就到此为止吧！
