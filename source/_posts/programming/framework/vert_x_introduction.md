@@ -3,7 +3,7 @@ title:  Vert.X(1)：简介
 date: 2020-12-07
 categories:  
     - 闲话编程
-    - 框架/库
+    - 框架
 tags:
     - Vert.X
 ---

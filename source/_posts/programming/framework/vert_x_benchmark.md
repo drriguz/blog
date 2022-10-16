@@ -3,7 +3,7 @@ title:  Vert.X(2)：Vert.x及SpringBoot在CPU密集型应用下的性能测试
 date: 2022-02-18
 categories:  
     - 闲话编程
-    - 框架/库
+    - 框架
 tags:
     - Vert.X
 ---

@@ -65,18 +65,24 @@ default_category: uncategorized
 category_map:
   闲话编程: programming
   刨根问底: dig
-  分布式服务: distributed
+  并发编程: concurrent
+  探索分析: inside
+  编程语言: lang
   算法: algorithm
   移动端: mobile
   容器化: container
-  工具/平台: platform
-  框架/库: framework
-  数据库: database
-  缓存: cache
+  开发环境: ide
+  小实现: innovation
+  存储: storage
+  框架: framework
+  安全: security
+  开发实践: practice
   协议: protocol
-  其他语言: lang
+  云计算: cloud
+  架构: arch
   其他: misc
   大数据: bigdata
+  高性能计算: hpc
 
 tag_map:
   ~LaTeX入门: collection-latex
