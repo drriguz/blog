@@ -5,10 +5,27 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 Building startted..."
-      - name: Check out repository code
+      - name: Checkout
         uses: actions/checkout@v3
-      - run: echo "cloned to ${{ github.workspace }}"
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - name: Install dependencies
+        run: npm install
+      - name: Install tools
+        run: |
+          npm install -g hexo-cli
+          wget -q https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb
+          sudo dpkg -i ./pandoc-2.7.3-1-amd64.deb
+          sudo apt-get install -y jpegoptim optipng
+      - name: Build site
+        run: |
+          npm run css-build
+          hexo generate --silent
+          cd public/images
+          find . -name '*.jpg' -o -name '*.jpeg' | xargs jpegoptim --strip-all
+          optipng *.png
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
