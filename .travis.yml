@@ -1,7 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-- 16
+- 19
 branches:
   only:
   - master
@@ -13,11 +13,12 @@ before_install:
   -in deploy_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
 - npm install -g hexo-cli
-- wget https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb
+- wget -q https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb
 - sudo dpkg -i ./pandoc-2.7.3-1-amd64.deb
 - sudo apt-get install -y jpegoptim
 - sudo apt-get install -y optipng
 script:
+- hexo -v
 - npm run css-build
 - hexo generate --silent
 - cd public/images
