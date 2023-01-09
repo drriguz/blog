@@ -21,8 +21,9 @@ script:
 - npm run css-build
 - hexo generate --silent
 - cd public/images
+- ls
 - find . -name '*.jpg' -o -name '*.jpeg' | xargs jpegoptim --strip-all
-- optipng -silent *.png
+- optipng *.png
 deploy:
   provider: script
   skip_cleanup: true
