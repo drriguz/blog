@@ -18,6 +18,7 @@ before_install:
 - sudo apt-get install -y jpegoptim
 - sudo apt-get install -y optipng
 script:
+- npm run css-build
 - hexo generate --silent
 - cd public/images
 - find . -name '*.jpg' -o -name '*.jpeg' | xargs jpegoptim --strip-all
