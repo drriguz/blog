@@ -24,7 +24,7 @@ jobs:
         uses: burnett01/rsync-deployments@5.2.1
         with:
           switches: -avz --quiet --delete
-          path: _build/html
+          path: _build/html/
           remote_path: /var/www/blog/
           remote_host: riguz.com
           remote_port: ${{ secrets.BLOG_PUBLISH_PORT }}
