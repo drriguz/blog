@@ -1,0 +1,8 @@
+sphinx
+myst-parser
+sphinxcontrib-bibtex
+sphinx-design
+sphinx-copybutton
+sphinxext-opengraph
+sphinx-mathjax-offline
+sphinx-book-theme   

@@ -1,31 +1,25 @@
 name: Publish to blog
 run-name: ${{ github.actor }} building & publishing 🚀
-on: [push]
+on:
+  push:
+    branches: [ master, sphinx ]
 jobs:
-  Explore-GitHub-Actions:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          node-version: '18.x'
+          python-version: '3.x'
       - name: Install dependencies
-        run: npm install
-      - name: Install tools
         run: |
-          npm install -g hexo-cli
-          wget -q https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb
-          sudo dpkg -i ./pandoc-2.7.3-1-amd64.deb
-          sudo apt-get install -y jpegoptim optipng
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
       - name: Build site
         run: |
-          npm run css-build
-          hexo generate --silent
-          cd public/images
-          find . -name '*.jpg' -o -name '*.jpeg' | xargs jpegoptim --strip-all
-          optipng *.png
+          make html
       - name: rsync deployments
         uses: burnett01/rsync-deployments@5.2.1
         with:
