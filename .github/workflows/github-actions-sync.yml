@@ -27,5 +27,6 @@ jobs:
           path: _build/html
           remote_path: /var/www/blog/
           remote_host: riguz.com
+          remote_port: ${{ secrets.BLOG_PUBLISH_PORT }}
           remote_user: rsync-blog
           remote_key: ${{ secrets.BLOG_PUBLISH_KEY }}
